@@ -2,12 +2,14 @@
 #include <vector>
 #include <limits>
 
-std::vector<int>& Lomuto(std::vector<int>& vec);
-std::vector<int>& vector_creating(std::vector<int>& vec, std::string& buffer);
+template <typename T>
+std::vector<T>& Lomuto(std::vector<T>& vec);
+template <typename T>
+std::vector<T>& vector_creating(std::vector<T>& vec, std::string& buffer);
 
 
 int main(){
-	std::vector<int> vec;
+	std::vector<long> vec;
 	int n{0};
 	std::string buffer;
 	std::cin >> n;
@@ -21,7 +23,9 @@ int main(){
 	return 0;
 }
 
-std::vector<int>& Lomuto(std::vector<int>& vec){
+
+template <typename T>
+std::vector<T>& Lomuto(std::vector<T>& vec){
 	//vec[0] is a pivotal point
 	int index = 1;
 	for(int i = 2; i < vec.size(); i++){
@@ -34,18 +38,19 @@ std::vector<int>& Lomuto(std::vector<int>& vec){
 	return vec;
 }
 
-std::vector<int>& vector_creating(std::vector<int>& vec, std::string& buffer){
+template <typename T>
+std::vector<T>& vector_creating(std::vector<T>& vec, std::string& buffer){
 	std::string temp{};
 	for(auto&& str : buffer){
 		if(str == ' '){
-			vec.push_back(atoi(temp.c_str()));
+			vec.push_back(std::atol(temp.c_str()));
 			temp.clear();
 			continue;
 		}
 		temp += str;
 	}
 	if(!temp.empty()){
-		vec.push_back(atoi(temp.c_str()));
+		vec.push_back(std::atol(temp.c_str()));
 	}
 	return vec;
 }	
