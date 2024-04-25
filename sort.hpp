@@ -74,3 +74,15 @@ std::vector<T>& QSort(std::vector<T>& vec){
 	
 	return vec;
 }
+
+template<typename T>
+std::vector<T>& SelectionSort(std::vector<T>& vec){
+	for(size_t i = 0; i < vec.size(); i++){
+		for(size_t j = 0; j < vec.size(); j++){
+			if(vec[i] <= vec[j]){
+				std::swap(vec[j], vec[i]);
+			}
+		}
+	}
+	return vec;
+}
